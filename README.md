@@ -1,9 +1,12 @@
-# Flutter PiP Player `flutter_pip_player`
+# Floating window
 
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://opensource.org/licenses/MIT)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Developer-ritesh/flutter_pip_player/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://pub.dev/packages/floating_window)
+[![pub](https://img.shields.io/pub/v/floating_window)](https://pub.dev/packages/floating_window)
+[![dart](https://img.shields.io/badge/dart-pure%20dart-success)](https://pub.dev/packages/floating_window)
 
 A powerful, customizable Picture-in-Picture (PiP) mini player for Flutter apps with smooth animations and edge snapping.
+
+## 📷 Screenshots
 
 <table>
   <tr>
@@ -14,36 +17,48 @@ A powerful, customizable Picture-in-Picture (PiP) mini player for Flutter apps w
   </tr>
 </table>
 
+## ✨ Features
 
-## Features
+- 🎮 **Fully Draggable**
+    Drag the mini player anywhere on the screen
+- 📌 **Smart Edge Snapping**
+    Automatically snaps to the nearest edge when released
+- 🔄 **Expandable View**
+    Tap to expand/collapse for more details and controls
+- 🎨 **Highly Customizable**
+    Customize colors, sizes, animations, and more
+- 🧩 **Universal Component**
+    Can display any content (videos, images, maps, etc.)
+- 🎛️ **Custom Controls**
+    Add your own playback controls
+- 📊 **Progress Indicator**
+    Shows playback progress
+- 📱 **Responsive Design**
+    Works on all screen sizes
+- 🔄 **Smooth Animations**
+    Beautiful transitions between states
+- 🎯 **Intuitive Gestures**
+    Natural interaction patterns
 
-- 🎮 **Fully Draggable**: Drag the mini player anywhere on the screen
-- 📌 **Smart Edge Snapping**: Automatically snaps to the nearest edge when released
-- 🔄 **Expandable View**: Tap to expand/collapse for more details and controls
-- 🎨 **Highly Customizable**: Customize colors, sizes, animations, and more
-- 🧩 **Universal Component**: Can display any content (videos, images, maps, etc.)
-- 🎛️ **Custom Controls**: Add your own playback controls
-- 📊 **Progress Indicator**: Shows playback progress
-- 📱 **Responsive Design**: Works on all screen sizes
-- 🔄 **Smooth Animations**: Beautiful transitions between states
-- 🎯 **Intuitive Gestures**: Natural interaction patterns
-
-## Installation
+## 📦 Installation
+Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flutter_pip_player: ^0.1.0
+  floating_window: ^latest_version
 ```
-flutter pub get
 
-2. **Basic Usage**
-- Import the package in your Dart file:
+```sh
+dependencies:
+  flutter pub get
+```
 
+
+## 🚀 Usage
+Import the package:
 ```dart
-import 'package:flutter_pip_player/pip_player.dart';
+import 'package:floating_window/floating_window.dart';
 ```
-
-## Create a `PipController` in your widget's state:
 
 ```dart
 class _MyWidgetState extends State<MyWidget> {
@@ -82,46 +97,6 @@ Widget build(BuildContext context) {
     ),
   );
 }
-```
-
-## Second Example
-```dart
-PipPlayer(
-  controller: _pipController,
-  content: Container(
-    color: Colors.amberAccent,
-  ),
-  onReelsDown: () {
-    log('down');
-  },
-  onReelsUp: () {
-    log('up');
-  },
-  onClose: () {
-    _pipController.hide();
-  },
-  onExpand: () {
-    _pipController.expand();
-  },
-  onRewind: () {
-    _pipController.progress - 1;
-  },
-  onForward: () {
-    _pipController.progress + 1;
-  },
-  onFullscreen: () {
-    /// Write logic for full screen
-    /// you can navigate to other screen
-  },
-  onPlayPause: () {
-    setState(() => _isPlaying = !_isPlaying);
-  },
-  onTap: () {
-    /// do any action
-    /// or
-    _pipController.toggleExpanded();
-  },
-),
 ```
 
 # Customization
@@ -163,27 +138,6 @@ PipPlayer(
 );
 ```
 
-## Enable Reels Mode
-- With reels mode you can scroll reels up and down using slider
-```dart
-final PipController _pipController = PipController(
-  title: 'Reels PiP Player',
-  settings: PipSettings(
-      /// enable reels slider
-      isReelsMode: true,
-      /// Meta-data of reels slider
-      reelsBackgroundColor: Colors.black45,
-      reelsDragSensitivity: 50.0,
-      reelsHeight: 100.0,
-      reelsSliderColor: Colors.white,
-      reelsSliderIcon: Icons.drag_handle,
-      reelsSliderIconColor: Colors.black,
-      reelsSliderSize: 25,
-      reelsWidth: 30,
-  ),
-);
-```
-
 ## Enable or Disable Snaps the PiP player to the nearest edge of screen of body
 ```dart
 final PipController _pipController = PipController(
@@ -214,12 +168,6 @@ _pipController.collapse();
 
 // Toggle between expanded and collapsed states
 _pipController.toggleExpanded();
-
-// Update the progress indicator (0.0 to 1.0)
-_pipController.updateProgress(0.5);
-
-// Set a new title
-_pipController.setTitle('New Video Title');
 
 // Update settings
 _pipController.updateSettings(newSettings);
@@ -267,10 +215,11 @@ By following this guide and referring to the README, you should be able to effec
 See the complete example in the example directory for a full implementation.
 
 
-# Contributing
-Contributions are welcome! Please open an issue or submit a pull request with any improvements or bug fixes.
+## 📄 License
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/deepak07082/floating_window/blob/main/LICENSE) file for details.
 
-# GitHub
-For more details, [visit the GitHub repository](https://github.com/Developer-ritesh)
+## 💬 Contributing
+Feel free to submit issues or pull requests. Contributions are welcome!
 
-## Copyright (c) 2025 [BihariGraphic](https://biharigraphic.com/)
+## 🌐 Author
+Made with ❤️ by Deepak.
