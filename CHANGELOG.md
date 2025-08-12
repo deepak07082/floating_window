@@ -1,8 +1,6 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-## [0.1.0] - Initial Release
+## [1.0.1] - Initial Release
 
 ### Added
 - 🎮 **Fully Draggable**: Drag the PiP player anywhere on the screen.

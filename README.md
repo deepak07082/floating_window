@@ -31,8 +31,6 @@ A powerful, customizable Picture-in-Picture (PiP) mini player for Flutter apps w
     Can display any content (videos, images, maps, etc.)
 - 🎛️ **Custom Controls**
     Add your own playback controls
-- 📊 **Progress Indicator**
-    Shows playback progress
 - 📱 **Responsive Design**
     Works on all screen sizes
 - 🔄 **Smooth Animations**
@@ -64,10 +62,7 @@ import 'package:floating_window/floating_window.dart';
 class _MyWidgetState extends State<MyWidget> {
 
   /// Controller
-  final PipController _pipController = PipController(
-    title: 'My Video',
-  );
-
+  final PipController _pipController = PipController();
   /// ...
 }
 ```
@@ -105,7 +100,6 @@ Widget build(BuildContext context) {
 
 ```dart
 final PipController _pipController = PipController(
-  title: 'Custom Player',
   settings: PipSettings(
     collapsedWidth: 200,
     collapsedHeight: 120,
@@ -113,7 +107,6 @@ final PipController _pipController = PipController(
     expandedHeight: 280,
     borderRadius: BorderRadius.circular(16),
     backgroundColor: Colors.indigo,
-    progressBarColor: Colors.amber,
     animationDuration: Duration(milliseconds: 400),
     animationCurve: Curves.easeOutQuart,
   ),
@@ -140,10 +133,7 @@ PipPlayer(
 
 ## Enable or Disable Snaps the PiP player to the nearest edge of screen of body
 ```dart
-final PipController _pipController = PipController(
-  isSnaping: true,
-  title: 'Pip Player',
-);
+final PipController _pipController = PipController(isSnaping: true);
 ```
 
 
