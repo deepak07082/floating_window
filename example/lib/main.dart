@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:floating_window/floating_window.dart';
+import 'package:floating_window_plus/floating_window_plus.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

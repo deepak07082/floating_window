@@ -1,10 +1,10 @@
 {
   "roots": [
-    "floating_window"
+    "floating_window_plus"
   ],
   "packages": [
     {
-      "name": "floating_window",
+      "name": "floating_window_plus",
       "version": "1.0.1",
       "dependencies": [
         "flutter",

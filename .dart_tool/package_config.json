@@ -170,7 +170,7 @@
       "languageVersion": "3.3"
     },
     {
-      "name": "floating_window",
+      "name": "floating_window_plus",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.8"
