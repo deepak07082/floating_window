@@ -1,0 +1,28 @@
+name: floating_window
+description: "A powerful, customizable Picture-in-Picture mini player for Flutter apps with smooth animations and edge snapping."
+version: 1.0.1
+homepage: https://github.com/deepak07082/floating_window.git
+repository: https://github.com/deepak07082/floating_window.git
+issue_tracker: https://github.com/deepak07082/floating_window/issues
+
+
+environment:
+  sdk: ^3.8.1
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+screenshots:
+  - description: 'Picture-in-Picture mini player Package Demo'
+    path: doc/flutter_pip_player.gif
