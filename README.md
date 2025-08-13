@@ -1,8 +1,8 @@
 # Floating window
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://pub.dev/packages/floating_window)
-[![pub](https://img.shields.io/pub/v/floating_window)](https://pub.dev/packages/floating_window)
-[![dart](https://img.shields.io/badge/dart-pure%20dart-success)](https://pub.dev/packages/floating_window)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://pub.dev/packages/floating_window_plus)
+[![pub](https://img.shields.io/pub/v/floating_window_plus)](https://pub.dev/packages/floating_window_plus)
+[![dart](https://img.shields.io/badge/dart-pure%20dart-success)](https://pub.dev/packages/floating_window_plus)
 
 A powerful, customizable Picture-in-Picture (PiP) mini player for Flutter apps with smooth animations and edge snapping.
 
