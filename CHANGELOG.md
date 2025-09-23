@@ -18,7 +18,21 @@
 
 ## [1.0.2] - Code optimization
 
+### optimization
+- Unwanted code and deprecations are removed.
+
+---
+
 ## [1.0.3] - Code optimization
 
+### Added
+- 🎮 **Tap Event**: onTapdown and onTapCancel added.
 
-This is the first version of Flutter PiP Player. Future updates will include more enhancements and optimizations. 🚀
+---
+
+## [1.0.4] - Feature
+
+### Added
+- 🎮 **Tap Event**: onLongPress added.
+
+---

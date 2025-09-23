@@ -14,6 +14,7 @@ class PipPlayer extends StatefulWidget {
     this.onTap,
     this.onTapDown,
     this.onTapCancel,
+    this.onLongPress,
   });
 
   final PipController controller;
@@ -24,6 +25,7 @@ class PipPlayer extends StatefulWidget {
   final VoidCallback? onTap;
   final GestureTapDownCallback? onTapDown;
   final VoidCallback? onTapCancel;
+  final VoidCallback? onLongPress;
 
   @override
   State<PipPlayer> createState() => _PipPlayerState();
@@ -186,6 +188,7 @@ class _PipPlayerState extends State<PipPlayer>
                 },
                 onTapDown: widget.onTapDown,
                 onTapCancel: widget.onTapCancel,
+                onLongPress: widget.onLongPress,
                 child: const SizedBox.expand(),
               ),
             ),
