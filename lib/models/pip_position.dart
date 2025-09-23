@@ -15,10 +15,7 @@ class PipPosition {
   });
 
   /// Creates a copy of this position with the given fields replaced
-  PipPosition copyWith({
-    Offset? offset,
-    PipAnchor? anchor,
-  }) {
+  PipPosition copyWith({Offset? offset, PipAnchor? anchor}) {
     return PipPosition(
       offset: offset ?? this.offset,
       anchor: anchor ?? this.anchor,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'models/pip_position.dart';
 import 'models/pip_settings.dart';
 
-/// Controller for the PiP player
 class PipController extends ChangeNotifier {
   bool _isVisible = false;
   bool _isExpanded = false;
@@ -12,14 +11,9 @@ class PipController extends ChangeNotifier {
   double _progress = 0.0;
   Size _screenSize = Size.zero;
 
-  /// Minimum margin to ensure safe area
-  double margin;
-
-  /// Ensuring visibility at the bottom
-  double bottomSafePadding;
-
-  /// Enable Snaps the PiP player to the nearest edge
-  bool isSnaping;
+  final double margin;
+  final double bottomSafePadding;
+  final bool isSnaping;
 
   PipController({
     PipSettings settings = const PipSettings(),
@@ -27,12 +21,13 @@ class PipController extends ChangeNotifier {
     this.bottomSafePadding = 80.0,
     this.isSnaping = true,
     this.margin = 10.0,
-  })  : _settings = settings,
-        _position = initialPosition ??
-            const PipPosition(
-              offset: Offset.zero,
-              anchor: PipAnchor.bottomRight,
-            );
+  }) : _settings = settings,
+       _position =
+           initialPosition ??
+           const PipPosition(
+             offset: Offset.zero,
+             anchor: PipAnchor.bottomRight,
+           );
 
   bool get isVisible => _isVisible;
   bool get isExpanded => _isExpanded;
@@ -41,156 +36,124 @@ class PipController extends ChangeNotifier {
   PipSettings get settings => _settings;
   double get progress => _progress;
   Size get screenSize => _screenSize;
+
   double get width =>
       _isExpanded ? _settings.expandedWidth : _settings.collapsedWidth;
+
   double get height =>
       _isExpanded ? _settings.expandedHeight : _settings.collapsedHeight;
 
   void setScreenSize(Size size) {
-    if (_screenSize != size) {
-      _screenSize = size;
-      if (_position.offset == Offset.zero) {
-        _initializePosition();
-      }
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        notifyListeners();
-      });
+    if (_screenSize == size) return;
+    _screenSize = size;
+    if (_position.offset == Offset.zero) {
+      _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
     }
-  }
-
-  void _initializePosition() {
-    if (_screenSize == Size.zero) return;
-    _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
+    notify();
   }
 
   Offset _getSafeOffset(Offset offset) {
-    double x = offset.dx;
-    double y = offset.dy;
-
-    x = x.clamp(margin, _screenSize.width - width - margin);
-    y = y.clamp(
-        margin, _screenSize.height - height - margin - bottomSafePadding);
-
-    return Offset(x, y);
+    final dx = offset.dx.clamp(margin, _screenSize.width - width - margin);
+    final dy = offset.dy.clamp(
+      margin,
+      _screenSize.height - height - margin - bottomSafePadding,
+    );
+    return Offset(dx, dy);
   }
 
   void show() {
-    if (!_isVisible) {
-      _isVisible = true;
-      notifyListeners();
-    }
+    if (_isVisible) return;
+    _isVisible = true;
+    notify();
   }
 
   void hide() {
-    if (_isVisible) {
-      _isVisible = false;
-      _isExpanded = false;
-      notifyListeners();
-    }
-  }
-
-  void toggleVisibility() {
-    _isVisible = !_isVisible;
-    if (!_isVisible) {
-      _isExpanded = false;
-    }
+    if (!_isVisible) return;
+    _isVisible = false;
+    _isExpanded = false;
     notifyListeners();
   }
 
+  void toggleVisibility() => _isVisible ? hide() : show();
+
   void expand() {
-    if (!_isExpanded && _settings.allowExpand) {
-      _isExpanded = true;
-      _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
-      notifyListeners();
-    }
+    if (_isExpanded || !_settings.allowExpand) return;
+    _isExpanded = true;
+    _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
+    notify();
   }
 
   void collapse() {
-    if (_isExpanded) {
-      _isExpanded = false;
-      _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
-      notifyListeners();
-    }
+    if (!_isExpanded) return;
+    _isExpanded = false;
+    _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
+    notify();
   }
 
   void toggleExpanded() {
-    if (_settings.allowExpand) {
-      _isExpanded = !_isExpanded;
-      _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
-      notifyListeners();
-    }
+    if (!_settings.allowExpand) return;
+    _isExpanded = !_isExpanded;
+    _position = _position.copyWith(offset: _getSafeOffset(_position.offset));
+    notify();
   }
 
   void setDragging(bool dragging) {
-    if (_isDragging != dragging) {
-      _isDragging = dragging;
-      notifyListeners();
-    }
+    if (_isDragging == dragging) return;
+    _isDragging = dragging;
+    notify();
   }
 
   void updatePosition(Offset offset) {
     _position = _position.copyWith(offset: _getSafeOffset(offset));
-    notifyListeners();
+    notify();
   }
 
   void snapToEdge() {
-    if (!isSnaping) return;
-    if (_screenSize == Size.zero) return;
+    if (!isSnaping || _screenSize == Size.zero) return;
 
-    final double x = _position.offset.dx;
-    final double y = _position.offset.dy;
+    final x = _position.offset.dx;
+    final y = _position.offset.dy;
 
-    final double leftDistance = x;
-    final double rightDistance =
-        _screenSize.width - (x + _settings.collapsedWidth);
-    final double topDistance = y;
-    final double bottomDistance = _screenSize.height -
+    final left = x;
+    final right = _screenSize.width - (x + _settings.collapsedWidth);
+    final top = y;
+    final bottom =
+        _screenSize.height -
         (y + _settings.collapsedHeight) -
         bottomSafePadding;
 
-    double newX = x;
-    double newY = y;
-    PipAnchor newAnchor;
+    final newX = left < right
+        ? margin
+        : _screenSize.width - _settings.collapsedWidth - margin;
+    final newY = top < bottom
+        ? margin
+        : _screenSize.height -
+              _settings.collapsedHeight -
+              margin -
+              bottomSafePadding;
 
-    if (leftDistance < rightDistance) {
-      newX = margin;
-    } else {
-      newX = _screenSize.width - _settings.collapsedWidth - margin;
-    }
-
-    if (topDistance < bottomDistance) {
-      newY = margin;
-      newAnchor =
-          leftDistance < rightDistance ? PipAnchor.topLeft : PipAnchor.topRight;
-    } else {
-      newY = _screenSize.height -
-          _settings.collapsedHeight -
-          margin -
-          bottomSafePadding;
-      newAnchor = leftDistance < rightDistance
-          ? PipAnchor.bottomLeft
-          : PipAnchor.bottomRight;
-    }
+    final newAnchor = top < bottom
+        ? (left < right ? PipAnchor.topLeft : PipAnchor.topRight)
+        : (left < right ? PipAnchor.bottomLeft : PipAnchor.bottomRight);
 
     _position = _position.copyWith(
       offset: Offset(newX, newY),
       anchor: newAnchor,
     );
-
-    notifyListeners();
+    notify();
   }
 
   void updateProgress(double value) {
-    _progress = value.clamp(0.0, 1.0);
-    notifyListeners();
+    final newValue = value.clamp(0.0, 1.0);
+    if (_progress == newValue) return;
+    _progress = newValue;
+    notify();
   }
 
   void updateSettings(PipSettings settings) {
     _settings = settings;
-    notifyListeners();
+    notify();
   }
 
-  void notify() {
-    notifyListeners();
-  }
+  void notify() => notifyListeners();
 }

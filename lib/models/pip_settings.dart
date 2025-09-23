@@ -178,18 +178,18 @@ class PipSettings {
 
   /// Settings for a mini map
   static PipSettings get map => const PipSettings(
-        collapsedWidth: 180.0,
-        collapsedHeight: 180.0,
-        expandedWidth: 320.0,
-        expandedHeight: 320.0,
-      );
+    collapsedWidth: 180.0,
+    collapsedHeight: 180.0,
+    expandedWidth: 320.0,
+    expandedHeight: 320.0,
+  );
 
   /// Settings for a chat bubble
   static PipSettings get chat => const PipSettings(
-        collapsedWidth: 200.0,
-        collapsedHeight: 120.0,
-        expandedWidth: 300.0,
-        expandedHeight: 400.0,
-        backgroundColor: Colors.blue,
-      );
+    collapsedWidth: 200.0,
+    collapsedHeight: 120.0,
+    expandedWidth: 300.0,
+    expandedHeight: 400.0,
+    backgroundColor: Colors.blue,
+  );
 }
