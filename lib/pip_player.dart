@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'models/pip_settings.dart';
 import 'pip_controller.dart';
 
-class MyPipPlayer extends StatefulWidget {
-  const MyPipPlayer({
+class PipPlayer extends StatefulWidget {
+  const PipPlayer({
     required this.controller,
     required this.content,
     super.key,
@@ -26,10 +26,10 @@ class MyPipPlayer extends StatefulWidget {
   final VoidCallback? onTapCancel;
 
   @override
-  State<MyPipPlayer> createState() => _MyPipPlayerState();
+  State<PipPlayer> createState() => _PipPlayerState();
 }
 
-class _MyPipPlayerState extends State<MyPipPlayer>
+class _PipPlayerState extends State<PipPlayer>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _scaleAnimation;

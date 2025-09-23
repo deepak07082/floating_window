@@ -55,7 +55,7 @@ dependencies:
 ## 🚀 Usage
 Import the package:
 ```dart
-import 'package:floating_window/floating_window.dart';
+import 'package:floating_window_plus/floating_window_plus.dart';
 ```
 
 ```dart

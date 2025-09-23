@@ -18,4 +18,7 @@
 
 ## [1.0.2] - Code optimization
 
+## [1.0.3] - Code optimization
+
+
 This is the first version of Flutter PiP Player. Future updates will include more enhancements and optimizations. 🚀
