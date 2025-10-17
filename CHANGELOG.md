@@ -36,3 +36,10 @@
 - 🎮 **Tap Event**: onLongPress added.
 
 ---
+
+## [1.0.5] - Feature
+
+### Added
+- 🎮 **Hit behavior**: behavior param added.
+
+---
