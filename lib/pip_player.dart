@@ -15,6 +15,7 @@ class PipPlayer extends StatefulWidget {
     this.onTapDown,
     this.onTapCancel,
     this.onLongPress,
+    this.behavior,
   });
 
   final PipController controller;
@@ -26,6 +27,7 @@ class PipPlayer extends StatefulWidget {
   final GestureTapDownCallback? onTapDown;
   final VoidCallback? onTapCancel;
   final VoidCallback? onLongPress;
+  final HitTestBehavior? behavior;
 
   @override
   State<PipPlayer> createState() => _PipPlayerState();
@@ -175,7 +177,7 @@ class _PipPlayerState extends State<PipPlayer>
               Align(alignment: Alignment.bottomCenter, child: widget.controls),
             Positioned.fill(
               child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
+                behavior: widget.behavior ?? HitTestBehavior.translucent,
                 onPanStart: (_) => controller.setDragging(true),
                 onPanUpdate: (d) => _handleDrag(controller, settings, d),
                 onPanEnd: (_) {
