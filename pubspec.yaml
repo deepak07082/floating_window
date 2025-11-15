@@ -1,6 +1,6 @@
 name: floating_window_plus
 description: "A powerful, customizable Picture-in-Picture mini player for Flutter apps with smooth animations and edge snapping."
-version: 1.0.5
+version: 1.0.6
 homepage: https://github.com/deepak07082/floating_window.git
 repository: https://github.com/deepak07082/floating_window.git
 issue_tracker: https://github.com/deepak07082/floating_window/issues

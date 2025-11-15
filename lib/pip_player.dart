@@ -16,6 +16,7 @@ class PipPlayer extends StatefulWidget {
     this.onTapCancel,
     this.onLongPress,
     this.behavior,
+    this.children,
   });
 
   final PipController controller;
@@ -28,6 +29,7 @@ class PipPlayer extends StatefulWidget {
   final VoidCallback? onTapCancel;
   final VoidCallback? onLongPress;
   final HitTestBehavior? behavior;
+  final List<Widget>? children;
 
   @override
   State<PipPlayer> createState() => _PipPlayerState();
@@ -213,6 +215,7 @@ class _PipPlayerState extends State<PipPlayer>
                   controller.hide();
                 },
               ),
+            if (widget.children != null) ...(widget.children ?? []),
           ],
         ),
       ),
