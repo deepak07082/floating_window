@@ -40,6 +40,7 @@ class _PipPlayerState extends State<PipPlayer>
   late final AnimationController _animationController;
   late final Animation<double> _scaleAnimation;
   late final Animation<double> _opacityAnimation;
+  bool didSetSize = false;
 
   @override
   void initState() {
@@ -106,7 +107,12 @@ class _PipPlayerState extends State<PipPlayer>
         builder: (context, controller, child) {
           if (!controller.isVisible) return const SizedBox.shrink();
 
-          controller.setScreenSize(MediaQuery.of(context).size);
+          if (!didSetSize) {
+            didSetSize = true;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              controller.setScreenSize(MediaQuery.of(context).size);
+            });
+          }
 
           return Positioned(
             left: controller.position.offset.dx,
