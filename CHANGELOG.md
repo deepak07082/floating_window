@@ -47,3 +47,6 @@
 ### Added
 - 🎮 **Children**: children param added.
 
+## [1.0.6] 
+- state issue fix
+
